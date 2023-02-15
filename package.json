@@ -1,15 +1,29 @@
 {
+  "name": "nuxt3-personal-kit",
+  "version": "0.1.0",
+  "description": "Nuxt 3 Personal Kit Facilitate future development Tailwind Css, Pinia, VeeValidate, Yup, Vitest and Storybook",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/reskyppo/nuxt3-personal-kit"
+  },
+  "author": "reskyppo",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test": "vitest --config ./vitest.config.js"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/test-utils": "^2.2.10",
+    "jsdom": "^21.1.0",
     "nuxt": "^3.2.0",
     "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.6"
+    "tailwindcss": "^3.2.6",
+    "vitest": "^0.28.5"
   }
 }
