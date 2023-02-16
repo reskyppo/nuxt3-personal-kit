@@ -25,5 +25,11 @@
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.6",
     "vitest": "^0.28.5"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.6",
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "nuxt-proxy": "^0.4.1",
+    "pinia": "^2.0.30"
   }
 }
