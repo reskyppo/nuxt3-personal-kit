@@ -21,6 +21,11 @@ export default defineNuxtConfig({
       pathFilter: ["/api/**"],
     },
   },
+  imports: {
+    // Auto-import pinia stores defined in `~/stores`
+    dirs: ["stores"],
+  },
+
   css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {

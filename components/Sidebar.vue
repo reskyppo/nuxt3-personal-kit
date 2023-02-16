@@ -193,10 +193,15 @@
   </div>
 
   <div
-    class="w-screen hidden flex-col justify-between h-screen bg-white border-r"
+    class="w-screen flex-col justify-between h-screen bg-white border-r"
+    :class="isSidebarActive ? 'flex' : 'hidden'"
   >
     <div class="px-4 py-6">
-      <span class="block w-32 h-10 bg-gray-200 rounded-lg"></span>
+      <div class="flex justify-between">
+        <span class="block w-32 h-10 bg-gray-200 rounded-lg"></span>
+
+        <button @click="setSidebar(false)">X</button>
+      </div>
 
       <nav aria-label="Main Nav" class="flex flex-col mt-6 space-y-1">
         <a
@@ -490,4 +495,7 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { setSidebar } = useSidebarStore();
+const { isSidebarActive } = storeToRefs(useSidebarStore());
+</script>

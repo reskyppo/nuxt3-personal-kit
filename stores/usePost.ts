@@ -11,9 +11,6 @@ export const usePostStore = defineStore("post", {
       post: null as PostData | null,
     };
   },
-  getters: {
-    doubleCount: (state) => state.count * 2,
-  },
   actions: {
     setPost(post: PostData | null) {
       this.post = post;
@@ -26,7 +23,7 @@ export const usePostStore = defineStore("post", {
             ? process.env.BASE_URL_PRODUCTION
             : "http://127.0.0.1:3000",
         });
-        this.setPost(data);   
+        this.setPost(data);
         return data;
       } catch (e) {
         this.setPost(null);

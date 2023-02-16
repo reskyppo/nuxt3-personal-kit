@@ -39,8 +39,8 @@
           <button
             class="rounded-lg bg-gray-100 p-2 text-gray-600"
             type="button"
+            @click="setSidebar(true)"
           >
-            <span class="sr-only">Open menu</span>
             <svg
               aria-hidden="true"
               class="h-5 w-5"
@@ -63,4 +63,6 @@
   </header>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { setSidebar } = useSidebarStore();
+</script>
