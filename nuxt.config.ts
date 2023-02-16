@@ -10,6 +10,15 @@ export default defineNuxtConfig({
       },
     ],
   ],
+
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.BASE_URL_PRODUCTION
+        ? process.env.BASE_URL_PRODUCTION
+        : "http://127.0.0.1:3000",
+    },
+  },
+
   // See options here https://github.com/chimurai/http-proxy-middleware#options
   proxy: {
     options: {

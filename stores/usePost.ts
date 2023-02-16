@@ -18,11 +18,17 @@ export const usePostStore = defineStore("post", {
 
     async getPostData() {
       try {
-        const data = await $fetch<PostData>("/api/posts/1", {
-          baseURL: process.env.BASE_URL_PRODUCTION
-            ? process.env.BASE_URL_PRODUCTION
-            : "http://127.0.0.1:3000",
-        });
+        const data = await useHttp("get", "/api/posts");
+        this.setPost(data);
+        return data;
+      } catch (e) {
+        this.setPost(null);
+        return null;
+      }
+    },
+    async getPostDataDetail(id: string) {
+      try {
+        const data = await useHttp("get", `/api/posts/${id}`);
         this.setPost(data);
         return data;
       } catch (e) {
