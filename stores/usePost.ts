@@ -21,12 +21,14 @@ export const usePostStore = defineStore("post", {
 
     async getPostData() {
       try {
-        const data = await $fetch<PostData>(API_ENDPOINT.AUTH.PROFILE, {
+        const data = await $fetch<PostData>("/api/posts/1", {
           baseURL: process.server ? "http://127.0.0.1:3000" : undefined,
         });
         this.setPost(data);
+        return data;
       } catch (e) {
         this.setPost(null);
+        return null;
       }
     },
   },
