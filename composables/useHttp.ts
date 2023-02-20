@@ -1,16 +1,22 @@
-const useHttp = async (
-  method: string = "GET",
-  endpoint: string,
-  body: any = null
-) => {
-  const config = useRuntimeConfig();
+interface useHttpInterface {
+  get: (endpoint: string, schema: any) => any;
+  post: (text: string) => any;
+  put: (text: string) => any;
+  delete: (text: string) => any;
+}
 
-  const data = await $fetch<PostData[]>(endpoint, {
-    baseURL: config.public.apiBase,
-    method: method.toUpperCase(),
-    body: body ? body : null,
-  });
-  return data;
+const useHttp = (): useHttpInterface => {
+  const config = useRuntimeConfig();
+  const get = async (endpoint: string, schema: any): any => {
+    const data = await $fetch(endpoint, {
+      baseURL: config.public.apiBase,
+    });
+    return data;
+  };
+
+  return {
+    get,
+  };
 };
 
 export default useHttp;

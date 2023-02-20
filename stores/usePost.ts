@@ -1,9 +1,4 @@
-interface PostData {
-  id: number;
-  userId: number;
-  title: string;
-  body: string;
-}
+import { PostData } from "types/PostData";
 
 export const usePostStore = defineStore("post", {
   state: () => {
@@ -17,8 +12,10 @@ export const usePostStore = defineStore("post", {
     },
 
     async getPostData() {
+      const http = useHttp();
+
       try {
-        const data = await useHttp("get", "/api/posts");
+        const data: PostData[] = await http.get("/api/posts");
         this.setPost(data);
         return data;
       } catch (e) {
@@ -27,8 +24,10 @@ export const usePostStore = defineStore("post", {
       }
     },
     async getPostDataDetail(id: string) {
+      const http = useHttp();
+
       try {
-        const data = await useHttp("get", `/api/posts/${id}`);
+        const data: PostData = await http.get(`/api/posts/${id}`);
         this.setPost(data);
         return data;
       } catch (e) {
