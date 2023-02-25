@@ -3,12 +3,17 @@ import { PostData } from "types/PostData";
 export const usePostStore = defineStore("post", {
   state: () => {
     return {
-      post: null as PostData | null,
+      post: null as PostData[] | null,
+      post_detail: null as PostData | null,
     };
   },
   actions: {
-    setPost(post: PostData | null) {
+    setPost(post: PostData[] | null) {
       this.post = post;
+    },
+
+    setPostDetail(post: PostData | null) {
+      this.post_detail = post;
     },
 
     async getPostData() {
@@ -23,12 +28,24 @@ export const usePostStore = defineStore("post", {
         return null;
       }
     },
+
     async getPostDataDetail(id: string) {
       const http = useHttp();
 
       try {
         const data: PostData = await http.get(`/api/posts/${id}`);
-        this.setPost(data);
+        this.setPostDetail(data);
+        return data;
+      } catch (e) {
+        this.setPostDetail(null);
+        return null;
+      }
+    },
+
+    async updatePostData(id: string, body: any) {
+      const http = useHttp();
+      try {
+        const data: PostData = await http.put(`/api/posts/${id}`, body);
         return data;
       } catch (e) {
         this.setPost(null);
