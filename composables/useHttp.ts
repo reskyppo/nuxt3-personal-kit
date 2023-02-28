@@ -8,7 +8,7 @@ interface useHttpInterface {
   get: (endpoint: string) => any;
   put: (endpoint: string, body: bodyInterface) => any;
   post: (endpoint: string, body: bodyInterface) => any;
-  //   delete: (endpoint: string) => any;
+  destroy: (endpoint: string) => any;
 }
 
 const useHttp = (): useHttpInterface => {
@@ -46,10 +46,20 @@ const useHttp = (): useHttpInterface => {
     return data;
   };
 
+  const destroy = async (endpoint: string): Promise<any> => {
+    const data = await $fetch(endpoint, {
+      baseURL: config.public.apiBase,
+      method: "DELETE",
+    });
+
+    return data;
+  };
+
   return {
     get,
     put,
     post,
+    destroy,
   };
 };
 

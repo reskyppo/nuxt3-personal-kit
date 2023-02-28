@@ -13,24 +13,34 @@
       <p class="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3">
         {{ item?.body || "body" }}
       </p>
-      <a
-        :href="`/get-started/${item.id}`"
-        class="cursor-pointer group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
-      >
-        Find out more
 
-        <span
-          aria-hidden="true"
-          class="block transition group-hover:translate-x-0.5"
+      <div class="flex items-center justify-between mt-4">
+        <a
+          :href="`/get-started/${item.id}`"
+          class="cursor-pointer group inline-flex items-center gap-1 text-sm font-medium text-blue-600"
         >
-          &rarr;
-        </span>
-      </a>
+          Find out more
+
+          <span
+            aria-hidden="true"
+            class="block transition group-hover:translate-x-0.5"
+          >
+            &rarr;
+          </span>
+        </a>
+
+        <p
+          class="text-sm font-medium text-red-600 cursor-pointer"
+          @click="deletePostData(item.id)"
+        >
+          Delete
+        </p>
+      </div>
     </article>
   </div>
 </template>
 <script lang="ts" setup>
 definePageMeta({ layout: "custom" });
-const { getPostData } = usePostStore();
+const { getPostData, deletePostData } = usePostStore();
 const { data } = await useAsyncData("post", () => getPostData());
 </script>

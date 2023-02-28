@@ -63,5 +63,16 @@ export const usePostStore = defineStore("post", {
         return null;
       }
     },
+
+    async deletePostData(id: string | number) {
+      const http = useHttp();
+      try {
+        const data: PostData = await http.destroy(`/api/posts/${id}`);
+        return data;
+      } catch (e) {
+        this.setPost(null);
+        return null;
+      }
+    },
   },
 });
