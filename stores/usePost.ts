@@ -52,5 +52,16 @@ export const usePostStore = defineStore("post", {
         return null;
       }
     },
+
+    async createPostData(body: any) {
+      const http = useHttp();
+      try {
+        const data: PostData = await http.post(`/api/posts`, body);
+        return data;
+      } catch (e) {
+        this.setPost(null);
+        return null;
+      }
+    },
   },
 });

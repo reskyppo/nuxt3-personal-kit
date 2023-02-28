@@ -7,7 +7,7 @@ interface bodyInterface {
 interface useHttpInterface {
   get: (endpoint: string) => any;
   put: (endpoint: string, body: bodyInterface) => any;
-  //   post: (endpoint: string, body: bodyInterface) => any;
+  post: (endpoint: string, body: bodyInterface) => any;
   //   delete: (endpoint: string) => any;
 }
 
@@ -33,9 +33,23 @@ const useHttp = (): useHttpInterface => {
     return data;
   };
 
+  const post = async (
+    endpoint: string,
+    body: { title: string; body: string; userId: number | string }
+  ): Promise<any> => {
+    const data = await $fetch(endpoint, {
+      baseURL: config.public.apiBase,
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+
+    return data;
+  };
+
   return {
     get,
     put,
+    post,
   };
 };
 
